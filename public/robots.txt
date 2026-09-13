@@ -1,14 +1,9 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Milla Conceito — robots.txt
+# CRM de uso interno: indexa apenas a página pública de acesso,
+# bloqueia as rotas operacionais /crm/*.
 
 User-agent: *
-Allow: /
+Allow: /$
+Allow: /favicon.ico
+Allow: /logo.png
+Disallow: /crm/

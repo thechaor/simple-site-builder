@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as CrmIndexRouteImport } from './routes/crm/index'
+import { Route as CrmClientesRouteImport } from './routes/crm/clientes'
+import { Route as CrmLoginRouteImport } from './routes/crm/login'
+import { Route as CrmPedidosRouteImport } from './routes/crm/pedidos'
+import { Route as CrmPipelineRouteImport } from './routes/crm/pipeline'
+import { Route as CrmRelatoriosRouteImport } from './routes/crm/relatorios'
+import { Route as CrmTarefasRouteImport } from './routes/crm/tarefas'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientesRoute = ClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CrmIndexRoute = CrmIndexRouteImport.update({
@@ -22,30 +34,116 @@ const CrmIndexRoute = CrmIndexRouteImport.update({
   path: '/crm/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CrmClientesRoute = CrmClientesRouteImport.update({
+  id: '/crm/clientes',
+  path: '/crm/clientes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmLoginRoute = CrmLoginRouteImport.update({
+  id: '/crm/login',
+  path: '/crm/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmPedidosRoute = CrmPedidosRouteImport.update({
+  id: '/crm/pedidos',
+  path: '/crm/pedidos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmPipelineRoute = CrmPipelineRouteImport.update({
+  id: '/crm/pipeline',
+  path: '/crm/pipeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmRelatoriosRoute = CrmRelatoriosRouteImport.update({
+  id: '/crm/relatorios',
+  path: '/crm/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmTarefasRoute = CrmTarefasRouteImport.update({
+  id: '/crm/tarefas',
+  path: '/crm/tarefas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/crm/clientes': typeof CrmClientesRoute
+  '/crm/login': typeof CrmLoginRoute
+  '/crm/pedidos': typeof CrmPedidosRoute
+  '/crm/pipeline': typeof CrmPipelineRoute
+  '/crm/relatorios': typeof CrmRelatoriosRoute
+  '/crm/tarefas': typeof CrmTarefasRoute
   '/crm/': typeof CrmIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/crm/clientes': typeof CrmClientesRoute
+  '/crm/login': typeof CrmLoginRoute
+  '/crm/pedidos': typeof CrmPedidosRoute
+  '/crm/pipeline': typeof CrmPipelineRoute
+  '/crm/relatorios': typeof CrmRelatoriosRoute
+  '/crm/tarefas': typeof CrmTarefasRoute
   '/crm': typeof CrmIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/crm/clientes': typeof CrmClientesRoute
+  '/crm/login': typeof CrmLoginRoute
+  '/crm/pedidos': typeof CrmPedidosRoute
+  '/crm/pipeline': typeof CrmPipelineRoute
+  '/crm/relatorios': typeof CrmRelatoriosRoute
+  '/crm/tarefas': typeof CrmTarefasRoute
   '/crm/': typeof CrmIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/crm/'
+  fullPaths:
+    | '/'
+    | '/clientes'
+    | '/crm/clientes'
+    | '/crm/login'
+    | '/crm/pedidos'
+    | '/crm/pipeline'
+    | '/crm/relatorios'
+    | '/crm/tarefas'
+    | '/crm/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/crm'
-  id: '__root__' | '/' | '/crm/'
+  to:
+    | '/'
+    | '/clientes'
+    | '/crm/clientes'
+    | '/crm/login'
+    | '/crm/pedidos'
+    | '/crm/pipeline'
+    | '/crm/relatorios'
+    | '/crm/tarefas'
+    | '/crm'
+  id:
+    | '__root__'
+    | '/'
+    | '/clientes'
+    | '/crm/clientes'
+    | '/crm/login'
+    | '/crm/pedidos'
+    | '/crm/pipeline'
+    | '/crm/relatorios'
+    | '/crm/tarefas'
+    | '/crm/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClientesRoute: typeof ClientesRoute
+  CrmClientesRoute: typeof CrmClientesRoute
+  CrmLoginRoute: typeof CrmLoginRoute
+  CrmPedidosRoute: typeof CrmPedidosRoute
+  CrmPipelineRoute: typeof CrmPipelineRoute
+  CrmRelatoriosRoute: typeof CrmRelatoriosRoute
+  CrmTarefasRoute: typeof CrmTarefasRoute
   CrmIndexRoute: typeof CrmIndexRoute
 }
 
@@ -58,6 +156,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clientes': {
+      id: '/clientes'
+      path: '/clientes'
+      fullPath: '/clientes'
+      preLoaderRoute: typeof ClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/crm/': {
       id: '/crm/'
       path: '/crm'
@@ -65,11 +170,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/crm/clientes': {
+      id: '/crm/clientes'
+      path: '/crm/clientes'
+      fullPath: '/crm/clientes'
+      preLoaderRoute: typeof CrmClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm/login': {
+      id: '/crm/login'
+      path: '/crm/login'
+      fullPath: '/crm/login'
+      preLoaderRoute: typeof CrmLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm/pedidos': {
+      id: '/crm/pedidos'
+      path: '/crm/pedidos'
+      fullPath: '/crm/pedidos'
+      preLoaderRoute: typeof CrmPedidosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm/pipeline': {
+      id: '/crm/pipeline'
+      path: '/crm/pipeline'
+      fullPath: '/crm/pipeline'
+      preLoaderRoute: typeof CrmPipelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm/relatorios': {
+      id: '/crm/relatorios'
+      path: '/crm/relatorios'
+      fullPath: '/crm/relatorios'
+      preLoaderRoute: typeof CrmRelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm/tarefas': {
+      id: '/crm/tarefas'
+      path: '/crm/tarefas'
+      fullPath: '/crm/tarefas'
+      preLoaderRoute: typeof CrmTarefasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClientesRoute: ClientesRoute,
+  CrmClientesRoute: CrmClientesRoute,
+  CrmLoginRoute: CrmLoginRoute,
+  CrmPedidosRoute: CrmPedidosRoute,
+  CrmPipelineRoute: CrmPipelineRoute,
+  CrmRelatoriosRoute: CrmRelatoriosRoute,
+  CrmTarefasRoute: CrmTarefasRoute,
   CrmIndexRoute: CrmIndexRoute,
 }
 export const routeTree = rootRouteImport
