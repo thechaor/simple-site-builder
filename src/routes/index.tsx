@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,12 +31,18 @@ export const Route = createFileRoute("/")({
 
 function HomeLoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(() => getRememberedEmail());
+  // Inicializa vazio para evitar divergência de hidratação SSR (localStorage
+  // só existe no cliente). O e-mail lembrado é carregado no useEffect abaixo.
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    setEmail(getRememberedEmail());
+  }, []);
 
   const trimmedEmail = email.trim();
   const isValid = trimmedEmail !== "" && password !== "";
@@ -238,7 +244,8 @@ function HomeLoginPage() {
 
                   <Button
                     type="submit"
-                    disabled={!isValid || isLoading}
+                    disabled={isLoading}
+                    aria-disabled={isLoading}
                     className="w-full bg-[#C9A14A] text-black transition hover:bg-[#C9A14A]/90 disabled:opacity-50"
                   >
                     {isLoading ? (
